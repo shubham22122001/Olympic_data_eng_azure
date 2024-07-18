@@ -1,0 +1,184 @@
+Video Summary
+Project Intro
+
+In this project we will extract the data from the API using Azure data Factory, transform the data using Azure databricks, and load the transformed data back to the transform data Lake storage.
+
+In this video we will execute the entire data engineering project on Azure Cloud from start to end from extracting data doing the transformation and then loading the data and doing analysis on top of it so I hope you have fun executing this project.
+
+In this project we will use Azure cloud to build a simple data pipeline, copy the data, do some basic transformations, and then load the data onto some Target location.
+
+Understand Architecture & Prerequisite
+
+This architecture diagram is built on top of ETL extract transform load and is built using Azure cloud services so first we have a data source then we have some ingestion mechanism ISM we are storing that data onto some location then we are using some transformation code using Apache spark.
+
+We will use Azure data Factory to build a data pipeline, connect to multiple sources, do some basic transformation, and then load the data onto our data Lake storage, which is basically an object storage where we can store our files.
+
+We will extract the raw data, store it on our storage location, write some code in Apache spark on top of this, and then load the transformed data onto the data Lake storage, and then use this analytics service called as Azure synapse analytics.
+
+So if you want to understand who won the highest gold medal by the country or which player won the highest gold medal you can do that using the SQL queries also and at the end you can build a dashboard using multiple tools such as power bi local studio and tablet.
+
+Okay, so the first thing you need to know is the basics of Python and SQL, and then you need to create an Azure account. I will teach you everything you need to know in this single video.
+
+Let&#39;s start by understanding our data source and then go deep dive into different Azure services available.
+
+Understand Dataset & APIs
+
+This data set contains information about 11 000 athletes with 47 disciplines and 743 teams taking in part in Tokyo Olympics 2021 and we have multiple different files available over here so let's understand the data set and look through the information we have available.
+
+We will also suggest you to spend some time on looking at this data by yourself so that you have much better understanding then we have the information about the coaches uh of that athlete so we have the name the country discipline and the event so four columns pretty easy to understand now.
+
+We have the team names, the country names, the athletes, the coaches, the medals, and the teams in the CAC format that is uploaded onto my GitHub repository. To get the data from here we will extract data from my GitHub repository you can create your own repository if you want or you can just start this repository and also you can Fork it if you want to pull the data from my GitHub repository.
+
+Azure Basics, Services Understanding, Account Setup
+
+When you sign up on the Azure portal you will have your own account, which is based on your email. You can create multiple subscriptions, and you can also have a free trial subscription.
+
+As you go forward and when your free trial expired then you will have to buy the subscription and you can allocate different subscription plans to different departments based on the budget. The resource group is basically kind of like the logical grouping of different resources.
+
+Based on the subscription, you can create different resource groups, and inside the resource groups, you can assign different resources to the resource groups. The data Factory service is a data integration service that enables you to create schedule manage data pipeline for efficient data movement and transformation between various source and destination, and the data Lake gen 2 service is a solution that combines the capability of data lake with the power of Azure blob.
+
+Azure blob is basically an object storage where you can have a hierarchical file system just like the file system we have it on our local computer and you can do your analysis on top of existing file and run your SQL queries.
+
+The data Lake Gen 2 is the open source framework for data processing and the Azure data breaks are the managed service where you can write your Apache spark and don't have to worry about managing your cluster and all of the other things.
+
+Azure Cloud provides Big Data analytics platform built upon Apache Spark and designed to help data engineers and scientists collaborate on big data processing and machine learning work. It also provides synapse analytics which is connected to SQL data warehouse available on Azure Cloud. You can do a lot of things with Azure Data Factory such as build a data transformation pipeline and write spark code.
+
+So they have integrated all of the services together so you can just use the single synapse analytics and do your entire work, but to learn more about the different services, we have picked up different services and divided the entire flow using the various services available on ashore.
+
+Okay so data Factory has a portal where you can have multiple transformation functions available, and integrate the databricks notebook or synapse Analytics some work SQL code.
+
+The Azure data Factory UI looks like a drag and drop format with multiple activities, a database notebook, a compute service, and synapse analytics. You can create a data Factory pipeline using the integrate button on the side.
+
+Azure has different services for the same work, so they have redundancy, but you get the hang of it once you start executing all of these things by yourself.
+
+Let's understand how to create Azure account. It's pretty simple, you just have to write Azure Cloud over here and click onto this free account. Azure provides 12 months on the popular services and 200 USD credit, which can be used to complete a short data engineering project within 10 to 15 dollars max if you use it properly. Make sure you complete this project within 30 days or you will have to pay.
+
+So I click on the start free it will redirect me to the Azure portal and so that I can create my account so once I do that I will have to enter my details about grade card and then I can sign up so this is pretty simple.
+
+Once you create your account, you will be redirected to a page where you can either subscribe for a free trial or start your project. The project that you are about to do was made possible by project Pro. Project Pro is a platform where you can find the top Big Data projects and data science projects you can build your own portfolio on this platform and get 10 flag discount so you can visit project.io and sign up over there.
+
+You can visit project product to learn more about it, and let's start with understanding the architecture diagram in little bit detail.
+
+Complete Project Execution
+
+We will copy the data from the data source to the data storage using data Factory.
+
+Once you have your data available onto the raw storage, you will use Azure data picks, write your PI spark code, do some basic transformation, and then upload your data back to the data Lake storage. You will then use synapse analytics to understand your data. We need two things to ingest our data to the data external, a data factory and a data like Gen 2, so we&#39;ll start by creating these two things first individually.
+
+You need to select the subscription, resource group, and storage account, and then give the name to your storage account. You can give it a unique name, or you can add your name at the end.
+
+You need to select the region, performance, and return settings before you can create a storage account in Azure. If you want to replicate your data across different regions, you can choose the different options from this tab. Once you enable the hierarchical namespace in your storage account, you can access your data just like a simple directory on your local computer.
+
+When you create a storage account, you need to select the hierarchical namespace, and all of the other things you don&#39;t need to touch, just click on to next. Once the creation of your storage account is complete, you can click onto the go resources.
+
+Over here we have many different things on the side panel we have the overview this gives you an entire overview of what our storage account actually is we have the resource Group this particular storage account the Tokyo Olympic data is inside this particular Resource Group. The important thing that we are really interested in is the container so we will be storing our data inside the container and we will give the name as to again Tokyo column pick data.
+
+Okay so we created a container and a storage account, and we want to create two folders: draw data and transform data.
+
+Okay, so we have two folders available, we will use Azure data Factory to ingest our data, then use Azure database transformation to load our data onto the transform folder, and this is pretty much done. We already set up our Azure data lake now we want to copy the data from the data source and put the data onto our Target location, so we need to use Azure data Factory.
+
+Okay once you click onto this it will redirect you to the similar page just like the storage account over here Resource Group now we don&#39;t want to create the new resource too so just select that give the name over here so let&#39;s say Tokyo okay Tokyo column pick data Factory. The data Factory deployment is completed, now all you have to do is go to resources and start configuring the storage account.
+
+You will see a new panel for the data Factory and you can work with the storage account, IM activity log, the networking part, and the security part, but for the purpose of this tutorial we just want to create a data file plan.
+
+Okay so we have our data factory ready Tokyo Olympic DF and this is where you can create the pipeline to extract data from the different sources and upload that data onto their Target location so we have ingest option orchestrate transform and configuration we already understood about all of these services.
+
+You can spend time on this and understand if you want, but we will go forward and start ingesting our data so all you have to do is click on to this author and click onto this plus icon over here I want to create pipeline.
+
+Right so let me just collapse this part you can also click on twist Arrow to see everything that we do you can also click on properties to see everything that we do so we have activities available inside the data Factory the activities are basically the operations that you want to perform on specific data. You can either click onto this move and transform and drag this copy data or just search over here copy data.
+
+We want to copy our data from our API to our location, so we uploaded our data onto a GitHub repository. We will use this repository as our data source, and we will extract our data from this repository and load our data onto our Azure location.
+
+We already understood about all of this data so we won't spend time explaining you about each and every file, instead we will just use the raw URL of this CSV file to extract the data inside our data Factory and load the data onto the Target location.
+
+We will have to do it one by one so go to your data Factory and click onto this new icon so you can extract data from multiple places including the Amazon RDS S3 blob space and the Azure data Lake Gen 2 data lake.
+
+You can just hit onto this particular URL using HTTP and you will get this data downloaded to your computer also so all you have to do is Click onto this http click on to continue now we want to specify the file format again Azure data Factory supports multiple types of files.
+
+Okay, so we want to give the base URL and the authentication type over here and we can get the raw URL by clicking onto this RAW button on the GitHub repository.
+
+Okay so you have created the link between your data factory and your GitHub repository. You can leave the relative URL and the first row as a header and click on to ok. We just linked our source to our data Factory and you can see the complete view of your data as it is, once you do this leave everything as it is, then we want to do a sync, and finally we want to load our data onto our Azure data Lake storage.
+
+So you can click onto this Gen 2 and click onto the new and click onto the Gen 2 and click onto the continue now you have the option to convert your data from a CSV file to orc Park.
+
+We created a storage account in azure and selected the Tokyo Olympic data storage account as our Target location. We are extracting data from our data source using data Factory and loading that data to the Gen 2.
+
+We created a link from our Azure data Factory to our Azure data Lake storage and we selected the path where we want to store our data, we also gave the file name, if you don't provide a file name it will put some random name.
+
+In this case we will keep the file name same which is the athlete CSV let's just convert this into the lowercase a okay and first row is my header import schema just click on To None and just click on to ok all look all looks good now all you have to do is validate. Factory use Simple copy activity and load our data to our store your account and this is what generally happens in the real world right instead of azure data Factor you might use something else but this is the simple process. Click on the CSV file, give it a name, create a new Link Service, provide a base URL, and enable Anonymous authentication. Click on the preview data to see the courses data is available.
+
+Gen 2 continue again select the CSP Link services, rename this to coaches, and then click on to OK to create a new file path and then click on to OK to validate and then click on to debug to check if there are any errors.
+
+Okay so we will just again see all of these into the action right now so the athlete is complete and the coaches is complete you can go to the storage account refresh this and you will see two files as you can see I made some error while writing this file coaches.csv.
+
+I was able to create the source and preview the data, and I can click onto the new http continue CSV file medals and then click onto the new Link services medals HTTP PS URL and everything looks good.
+
+I can see my data then I can just go to the sync click onto new or short data link Gen 2 CAC file over here I can just say metals uh sync okay sync Services just select the Azure data Lake storage file system is this one Raw and the file name is medals.csv none okay medal is done.
+
+Okay so we have our pipeline running now let's wait for it to complete so we can see how much time it takes to copy data from the HTTP server to our Azure audio Gen 2 platform. Team sync okay so I made a mistake and renamed our teams.csv as a metal doc so make sure you don't make the same mistake as me and once it is complete we can move forward.
+
+Okay, so we just completed the first part of our project, which was getting data from the data ingestion and storing it in the raw data store. Now we will jump on to the Azure databricks part, where we will write our basic transformation code.
+
+Go to your ashar portal, search for Azure database, select Tokyo Olympic as the resource group, name the workspace Tokyo Olympic, select the nearest region according to your location, and then click on create to start deploying your Azure databricks workspace.
+
+We did the same process, we put some name, selected some options, and then we are done, you can check the documentation if you want to understand the different options.
+
+The deployment of our Azure database is complete and once it is complete we will move forward okay to the creation of the notebook instance and all the other things to write our code so once the login the authentication part is complete you will see something like this.
+
+So we have multiple options over here, the new workspace, the reasons based, the data, the workflow, and the compute services, so first we want to create the compute, then we will define the policy, and then we will create the compute.
+
+For the tutorial purposes we will just go with a single node, you can try multi-node but you might get an error because there are limitations Azure provides, so just click on the single node runtime.
+
+We created a cluster for Azure database, we can see the memory and the ports, we will go with the default one node type again, we will wait for few minutes, and we will continue power, and once everything is ready we can write our spark code.
+
+We want to transform some data and put that data onto the translate location so we have to create a connection from this Azure databricks to our Azure data storage and provide some authentication in the back end to easily access the data.
+
+To connect from Azure databricks to ADLs, you need to create an app and get some credentials. You can find these credentials over here, and you can follow along with the video to understand why we did all of these things.
+
+You need to create a client ID, tenant ID, and secret ID for accessing the ideal list. You can just click onto the button and give the name secret key and click on to add. Okay, now we have the application ID, tenant ID, and secret ID, we can use these three things to create the connection from our database to the ADLs, and we will face some errors.
+
+Okay so let me just pull out the code and show you how to create a connection from your data Factory to the data Lake storage by replacing few things and adding your client ID, secret ID, and tenant ID.
+
+You can use the key wall to access all of these things and it is not exposed inside the code so we will just ignore that part for now but in the real world you will have to use a key Vault to properly access all of these keys and IDs securely. On the data side you have to provide your container name so we can just go to the storage and create the basic connection.
+
+You can put the container name over here and the storage account name over here and then you can copy the container name over here and then you can paste it over here and you can run this and hopefully you will not get any error.
+
+We are getting the error that we do not have the permission to access the files that are stored onto the data Lake and for that we need to explicitly give the access so we have to go on to our storage over here and click onto this Access Control.
+
+IIM add role assignment and over here I can just give uh access to let me see a storage log contributor okay just click onto the storage blob contributor tool and you will see you can give the access to the app to be able to read write or delete any object onto this container.
+
+Okay so we are able to mount the data lake to this location and we can try reading one file. When you write spark code, you have to create a spark session, then create an app, and then write your code. On the data breaks, you don't have to create a spark session, but you still have to import your spark session.
+
+So to read a CSV file using PI SQL, you have to build a spark session, give the app name get or create, then you will have the spark function, and then you can use this spark dot d dot format.
+
+You have to read all of the data frames available inside your data lake, so let's say go coaches, then put the purchase over here, then entries gender, then metals, then teams.
+
+We will read all of the CAC files that are available and we will do some basic transformation and also do some basic analytics by using Apache barcode so that you will get understanding about the different functions available in Apache spark.
+
+We will do searches, call as a print schema, and then look at the coaches and the purchase and see that we have the gender in the string format and the schema as string so nothing wrong with this data frame.
+
+We will use the width column function to transform the number of females, number of males, and the total amount of these two from string to integer so that we can pass the quality data forward for the analysis and to build the machine learning models.
+
+We will create a new column female and we will have to import two things on the top a column function from the spark package and the integer type. We can use the column function and the integer type in our code like this.
+
+We want to convert the male, female, and total to the integer type, so we check the show and make sure we have a lot of integer values available, and then we convert the schema to the integer type.
+
+There is an option available inside the purchase bar called as the this one dot option in first schema as true and if you do this, Purchase Park will go through the CSV automatically and will try to understand the schema of each and every column. I just showed you both way because you know I just want to show you the different way you can transform this data.
+
+So this is about the Reading part of it now we can also do some basic transformation on top of it so you can find the top countries with the highest number of gold medals or sort the data based on something.
+
+You can do basic transformations in Apache spark or you can calculate the average number of entries by gender for each discipline. You can do this using code or SQL, and there are many different functions available in Apache spark.
+
+You can go over here to the Apache spark documentation and you will find literally each and every functions available for your transformation work so the goal of this writing core was not to transform anything but just to show you how to read data and do some basic transformation.
+
+We were able to read the data, we did some basic transformations, now we want to write this data, so we can get the data frame name, right dot mode, overwrite, and choose the location where we want to write the data.
+
+If I run this, hopefully it writes file onto our storage, and if I want the single file, I can convert this into the pandas data frame and then write it, but generally when I write the file using Apache spark it will create the folder and then write the files with the metadata with it.
+
+If your data is large, Park will divide the writing object file into multiple small parts. If you want to write a single file, you can use a repartition three.
+
+You can partition your data into multiple different files while writing the spark code, so let's say in this case I provide partition as three if I run this and if I go over here you will see I was able to partition data into three different files.
+
+We used data Factory to extract the data from the GitHub repository, loaded it onto the Target location, created a compute workspace, and started writing code, read the data, did few transformations, and understood the Apache spark core. We have loaded the data onto the synapse analytics and we will use SQL to do the analysis or build a dashboard on top of it, so we have done it using the code and now we will do it using the UI.
+
+So this is the end of part 1 of this project, I hope you had fun executing it. If you want to watch part 2 click on this card.
