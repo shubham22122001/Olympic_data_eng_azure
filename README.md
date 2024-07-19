@@ -1,3 +1,7 @@
+## Tech Stack: 
+Azure Data Factory, Azure Databricks, Azure Data Lake Storage, Apache Spark, Azure Synapse Analytics, Python, SQL.
+
+
 ### Project Introduction
 
 In this project, we will:
