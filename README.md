@@ -19,6 +19,7 @@ In this project, we will:
 ### Architecture & Prerequisites
 
 **Architecture Diagram:**
+![architecture](Architectue.png)
 - Built on the ETL (Extract, Transform, Load) process using Azure Cloud services.
 - Data source → Ingestion mechanism → Data storage → Transformation using Apache Spark.
 
