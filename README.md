@@ -16,6 +16,16 @@ In this project, we will:
 - Extract data, perform transformations, load data, and conduct analysis.
 - Build a simple data pipeline to copy, transform, and load data.
 
+### Data
+Link : https://www.kaggle.com/datasets/arjunprasadsarkhel/2021-olympics-in-tokyo
+
+About Dataset
+Details
+This contains the details of over 11,000 athletes, with 47 disciplines, along with 743 Teams taking part in the 2021(2020) Tokyo Olympics.
+This dataset contains the details of the Athletes, Coaches, Teams participating as well as the Entries by gender. It contains their names, countries represented, discipline, gender of competitors, name of the coaches.
+
+Will update the dataset with medals(gold, silver, bronze), more details about the athletes after few weeks.
+
 ### Architecture & Prerequisites
 
 **Architecture Diagram:**
